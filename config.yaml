@@ -1,0 +1,2 @@
+DatabaseName: ./db/home-automation.db
+Verbose: true

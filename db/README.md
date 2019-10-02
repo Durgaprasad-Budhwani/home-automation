@@ -1,0 +1,1 @@
+This empty folder is for database.
