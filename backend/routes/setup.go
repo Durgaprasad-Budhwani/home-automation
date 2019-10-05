@@ -1,8 +1,8 @@
 package routes
 
 import (
-	"github.com/durgaprasad-budhwani/home-automation/controllers"
-	"github.com/durgaprasad-budhwani/home-automation/services"
+	"github.com/durgaprasad-budhwani/home-automation/backend/controllers"
+	"github.com/durgaprasad-budhwani/home-automation/backend/services"
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-contrib/gzip"

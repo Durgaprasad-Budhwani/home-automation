@@ -3,8 +3,8 @@ package controllers
 import (
 	"net/http"
 
-	"github.com/durgaprasad-budhwani/home-automation/models"
-	"github.com/durgaprasad-budhwani/home-automation/services"
+	"github.com/durgaprasad-budhwani/home-automation/backend/models"
+	"github.com/durgaprasad-budhwani/home-automation/backend/services"
 
 	"github.com/gin-gonic/gin"
 )

@@ -1,7 +1,7 @@
 package services
 
 import (
-	"github.com/durgaprasad-budhwani/home-automation/models"
+	"github.com/durgaprasad-budhwani/home-automation/backend/models"
 	"github.com/jinzhu/gorm"
 	"github.com/rs/zerolog/log"
 )
