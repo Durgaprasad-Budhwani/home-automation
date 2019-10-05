@@ -1,20 +1,43 @@
-package app
+package main
 
 import (
 	"fmt"
-	"net/http"
-	"time"
+	"os"
+	"runtime"
 
-	"github.com/gin-gonic/gin"
+	"github.com/durgaprasad-budhwani/home-automation/backend/routes"
+	"github.com/durgaprasad-budhwani/home-automation/backend/utils"
+
+	"github.com/jinzhu/gorm"
+	_ "github.com/jinzhu/gorm/dialects/sqlite"
 )
 
 func main() {
 	fmt.Print("Application started")
 
-	router := gin.Default()
+	configureRuntime()
 
-	router.GET("/health", func(c *gin.Context) {
-		c.String(http.StatusOK, "Health %s", time.Now())
-	})
-	router.Run(":80")
+	viper := utils.NewViper("./config.yaml")
+	fmt.Print(viper.GetString("Database"))
+	db, err := gorm.Open("sqlite3", viper.GetString("Database"))
+	if err != nil {
+		panic("failed to connect database")
+	}
+	db.LogMode(viper.GetBool("Verbose"))
+	defer db.Close()
+
+	r := routes.SetupRouter(db)
+
+	// Listen and Server in 0.0.0.0:8080
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "80"
+	}
+	r.Run(":" + port)
+}
+
+func configureRuntime() {
+	//nuCPU := runtime.NumCPU()
+	runtime.GOMAXPROCS(1)
+	fmt.Printf("Running with %d CPUs\n", 1)
 }

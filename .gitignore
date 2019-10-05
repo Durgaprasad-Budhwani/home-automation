@@ -1,0 +1,3 @@
+# Created by .ignore support plugin (hsz.mobi)
+
+SELECT * FROM "schedulers"  WHERE "schedulers"."deleted_at" IS NULL ORDER BY name asc LIMIT 10 OFFSET 0

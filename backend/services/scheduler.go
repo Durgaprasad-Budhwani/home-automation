@@ -2,6 +2,7 @@ package services
 
 import (
 	"github.com/durgaprasad-budhwani/home-automation/backend/models"
+
 	"github.com/jinzhu/gorm"
 	"github.com/rs/zerolog/log"
 )
@@ -37,9 +38,8 @@ func (s SchedulerService) GetAll(limit, page int) ([]models.Scheduler, error) {
 	log.Debug().Msg("[Scheduler - SchedulerService - GetAll] - Fetching all schedulers from db")
 	var schedulers []models.Scheduler
 	err := s.db.
-		Order("name asc").
-		Limit(limit).
-		Offset(limit * page).
+		//Limit(limit).
+		//Offset(limit * page).
 		Find(&schedulers).Error
 
 	if err != nil {

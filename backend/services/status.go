@@ -2,6 +2,7 @@ package services
 
 import (
 	"github.com/durgaprasad-budhwani/home-automation/backend/models"
+
 	"github.com/jinzhu/gorm"
 	"github.com/rs/zerolog/log"
 )
@@ -20,7 +21,7 @@ func (s StatusService) Save(status *models.Status) error {
 		Create(&status).Error
 }
 
-func (s StatusService) Update(id string, status *models.Status) error {
+func (s StatusService) Update(id uint, status *models.Status) error {
 	existingAgency := &models.Status{}
 	err := s.db.
 		Where("id = ?", id).
@@ -37,9 +38,8 @@ func (s StatusService) GetAll(limit, page int) ([]models.Status, error) {
 	log.Debug().Msg("[Status - StatusService - GetAll] - Fetching all statuses from db")
 	var statuses []models.Status
 	err := s.db.
-		Order("name asc").
-		Limit(limit).
-		Offset(limit * page).
+		//Limit(limit).
+		//Offset(limit * page).
 		Find(&statuses).Error
 
 	if err != nil {

@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
-	"github.com/durgaprasad-budhwani/home-automation/backend/models"
 
+	"github.com/durgaprasad-budhwani/home-automation/backend/models"
 	"github.com/durgaprasad-budhwani/home-automation/backend/utils"
 
 	"github.com/jinzhu/gorm"
@@ -22,5 +22,5 @@ func main() {
 	defer db.Close()
 
 	// Migrate the schema
-	db.AutoMigrate(&models.Scheduler{}, &models.Status{})
+	db.AutoMigrate(&models.Status{}, &models.Status{})
 }
