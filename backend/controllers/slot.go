@@ -9,17 +9,17 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-type StatusController struct {
-	service services.StatusService
+type SlotController struct {
+	service services.SlotService
 }
 
-func NewStatusController(service services.StatusService) StatusController {
-	return StatusController{
+func NewSlotController(service services.SlotService) SlotController {
+	return SlotController{
 		service,
 	}
 }
 
-func (c StatusController) GetStatus(context *gin.Context) {
+func (c SlotController) GetSlots(context *gin.Context) {
 	schedulers, err := c.service.GetAll(10, 0)
 	if err != nil {
 		context.JSON(http.StatusInternalServerError, err.Error())
@@ -28,34 +28,34 @@ func (c StatusController) GetStatus(context *gin.Context) {
 	context.JSON(http.StatusOK, schedulers)
 }
 
-func (c StatusController) AddStatus(context *gin.Context) {
-	var status models.Status
-	err := context.BindJSON(&status)
+func (c SlotController) AddSlot(context *gin.Context) {
+	var scheduler models.Slot
+	err := context.BindJSON(&scheduler)
 	if err != nil {
 		context.JSON(http.StatusInternalServerError, err.Error())
 		return
 	}
 
-	err = c.service.Save(&status)
+	err = c.service.Save(&scheduler)
 	if err != nil {
 		context.JSON(http.StatusInternalServerError, err.Error())
 		return
 	}
-	context.JSON(http.StatusOK, status)
+	context.JSON(http.StatusOK, scheduler)
 }
 
-func (c StatusController) UpdateStatus(context *gin.Context) {
-	var status models.Status
-	err := context.BindJSON(&status)
+func (c SlotController) UpdateSlot(context *gin.Context) {
+	var scheduler models.Slot
+	err := context.BindJSON(&scheduler)
 	if err != nil {
 		context.JSON(http.StatusInternalServerError, err.Error())
 		return
 	}
 
-	err = c.service.Update(status.ID, &status)
+	err = c.service.Update(scheduler.ID, &scheduler)
 	if err != nil {
 		context.JSON(http.StatusInternalServerError, err.Error())
 		return
 	}
-	context.JSON(http.StatusOK, status)
+	context.JSON(http.StatusOK, scheduler)
 }

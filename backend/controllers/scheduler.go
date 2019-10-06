@@ -19,7 +19,7 @@ func NewSchedulerController(service services.SchedulerService) SchedulerControll
 	}
 }
 
-func (c SchedulerController) GetSchedulers(context *gin.Context) {
+func (c SchedulerController) GetSchedules(context *gin.Context) {
 	schedulers, err := c.service.GetAll(10, 0)
 	if err != nil {
 		context.JSON(http.StatusInternalServerError, err.Error())
@@ -28,34 +28,34 @@ func (c SchedulerController) GetSchedulers(context *gin.Context) {
 	context.JSON(http.StatusOK, schedulers)
 }
 
-func (c SchedulerController) AddScheduler(context *gin.Context) {
-	var scheduler models.Scheduler
-	err := context.BindJSON(&scheduler)
+func (c SchedulerController) AddSchedule(context *gin.Context) {
+	var status models.Schedule
+	err := context.BindJSON(&status)
 	if err != nil {
 		context.JSON(http.StatusInternalServerError, err.Error())
 		return
 	}
 
-	err = c.service.Save(&scheduler)
+	err = c.service.Save(&status)
 	if err != nil {
 		context.JSON(http.StatusInternalServerError, err.Error())
 		return
 	}
-	context.JSON(http.StatusOK, scheduler)
+	context.JSON(http.StatusOK, status)
 }
 
-func (c SchedulerController) UpdateScheduler(context *gin.Context) {
-	var scheduler models.Scheduler
-	err := context.BindJSON(&scheduler)
+func (c SchedulerController) UpdateSchedule(context *gin.Context) {
+	var status models.Schedule
+	err := context.BindJSON(&status)
 	if err != nil {
 		context.JSON(http.StatusInternalServerError, err.Error())
 		return
 	}
 
-	err = c.service.Update(scheduler.ID, &scheduler)
+	err = c.service.Update(status.ID, &status)
 	if err != nil {
 		context.JSON(http.StatusInternalServerError, err.Error())
 		return
 	}
-	context.JSON(http.StatusOK, scheduler)
+	context.JSON(http.StatusOK, status)
 }

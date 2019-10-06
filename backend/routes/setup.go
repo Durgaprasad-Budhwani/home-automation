@@ -20,20 +20,20 @@ func SetupRouter(db *gorm.DB) *gin.Engine {
 	r.Use(cors.Default())
 
 	// services
-	schedulerService := services.NewSchedulerService(db)
-	schedulerController := controllers.NewSchedulerController(schedulerService)
+	schedulerService := services.NewSlotService(db)
+	schedulerController := controllers.NewSlotController(schedulerService)
 
-	statusService := services.NewStatusService(db)
-	statusController := controllers.NewStatusController(statusService)
+	statusService := services.NewSchedulerService(db)
+	statusController := controllers.NewSchedulerController(statusService)
 
 	// Ping test
-	r.GET("/schedulers/", schedulerController.GetSchedulers)
-	r.POST("/schedulers", schedulerController.AddScheduler)
-	r.PUT("/schedulers/:id", schedulerController.UpdateScheduler)
+	r.GET("/schedulers/", schedulerController.GetSlots)
+	r.POST("/schedulers", schedulerController.AddSlot)
+	r.PUT("/schedulers/:id", schedulerController.UpdateSlot)
 
-	r.GET("/status/", statusController.GetStatus)
-	r.POST("/status", statusController.AddStatus)
-	r.PUT("/status/:id", statusController.UpdateStatus)
+	r.GET("/status/", statusController.GetSchedulers)
+	r.POST("/status", statusController.AddSchedule)
+	r.PUT("/status/:id", statusController.UpdateSchedule)
 
 	return r
 }

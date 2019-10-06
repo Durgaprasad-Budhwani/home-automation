@@ -22,5 +22,5 @@ func main() {
 	defer db.Close()
 
 	// Migrate the schema
-	db.AutoMigrate(&models.Status{}, &models.Status{})
+	db.AutoMigrate(&models.Slot{}, &models.Schedule{})
 }

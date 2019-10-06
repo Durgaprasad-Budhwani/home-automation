@@ -33,11 +33,15 @@ func main() {
 	if port == "" {
 		port = "80"
 	}
-	r.Run(":" + port)
+
+	err = r.Run(":" + port)
+	if err != nil {
+		panic("failed to run application")
+	}
 }
 
 func configureRuntime() {
-	//nuCPU := runtime.NumCPU()
+	nuCPU := runtime.NumCPU()
 	runtime.GOMAXPROCS(1)
-	fmt.Printf("Running with %d CPUs\n", 1)
+	fmt.Printf("Running with %d CPUs\n", nuCPU)
 }
