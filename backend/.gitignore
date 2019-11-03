@@ -11,3 +11,8 @@
 # Output of the go coverage tool, specifically when used with LiteIDE
 *.out
 /backend/db/home-automation.db
+ngrokngrok
+/root-CA.crt
+/SimplyServerlessSmartGardening.cert.pem
+/SimplyServerlessSmartGardening.private.key
+/SimplyServerlessSmartGardening.public.key

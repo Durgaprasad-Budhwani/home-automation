@@ -31,9 +31,15 @@ func SetupRouter(db *gorm.DB) *gin.Engine {
 	r.POST("/schedulers", schedulerController.AddSlot)
 	r.PUT("/schedulers/:id", schedulerController.UpdateSlot)
 
-	r.GET("/status/", statusController.GetSchedulers)
+	r.GET("/status/", statusController.GetSchedules)
 	r.POST("/status", statusController.AddSchedule)
 	r.PUT("/status/:id", statusController.UpdateSchedule)
+
+	r.GET("/health", func(c *gin.Context) {
+		c.JSON(200, gin.H{
+			"message": "Alive",
+		})
+	})
 
 	return r
 }

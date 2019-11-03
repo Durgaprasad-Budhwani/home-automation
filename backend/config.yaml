@@ -1,2 +1,8 @@
 Database: ./db/home-automation.db
 Verbose: true
+CACertificatePath: ./root-CA.crt
+CertificatePath: ./SimplyServerlessSmartGardening.cert.pem
+PrivateKeyPath: ./SimplyServerlessSmartGardening.private.key
+AwsIotEndpoint: a39p6p4awox42l-ats.iot.ap-south-1.amazonaws.com
+AwsIotThinkName: SimplyServerlessSmartGardening
+AwsIotTopicName: test
